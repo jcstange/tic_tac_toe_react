@@ -10,7 +10,7 @@ type IBoard = {
 
 const Board: React.FC = () => {
     const [ values, setAllValues ] = useState<IBoard>({
-        squares: Array(9).fill(null),
+        squares: Array(9).fill("-"),
         xIsNext: true 
     }) 
 
@@ -39,7 +39,7 @@ const Board: React.FC = () => {
 
         for(let i = 0; i < lines.length; i++) {
             const [a, b, c] = lines[i]
-            if(squares[a] && squares[a]===squares[b] && squares[a]===squares[c]){
+            if(squares[a] != "-" && squares[a]===squares[b] && squares[a]===squares[c]){
                 return squares[a]
             }
         }
@@ -50,7 +50,7 @@ const Board: React.FC = () => {
     function didGameEnd(): boolean {
         if(calculateWinner(values.squares)) return true
         for(let i = 0; i < values.squares.length; i++)
-            if(values.squares[i] == null) return false 
+            if(values.squares[i] == "-") return false 
         return true
     }
     
@@ -67,7 +67,7 @@ const Board: React.FC = () => {
     }
 
     function reset() {
-        setAllValues({...values, squares: Array(9).fill(null), xIsNext: true})
+        setAllValues({...values, squares: Array(9).fill("-"), xIsNext: true})
     }
 
     return (
@@ -103,7 +103,7 @@ const Square: React.FC<SquareProps> = ( { value, onClick }) => {
     return (
     <button
       className="square"
-      style={{ width:60, height:60}}
+      style={{ width:60, height:60, margin:0 }}
       onClick={() => onClick()}
     >{value}</button>
     )
