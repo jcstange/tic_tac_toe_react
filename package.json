@@ -1,6 +1,7 @@
 {
   "name": "tic_tac_toe",
   "version": "0.1.0",
+  "homepage": "https://jcstange.github.io/tic_tac_toe_react",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
